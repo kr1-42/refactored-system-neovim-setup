@@ -7,4 +7,8 @@ require("config.keymaps")
 require("config.runners")  -- F5–F8 compile / norminette / valgrind
 require("config.autocmds")
 
+if vim.fn.has("mac") == 1 then
+  require("config.mac")    -- macOS-only overrides
+end
+
 -- plugin/*.vim (stdheader, gdb, rmautologin) are sourced automatically by Neovim

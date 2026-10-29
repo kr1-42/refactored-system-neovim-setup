@@ -13,6 +13,7 @@ lua/config/lazy.lua       installs lazy.nvim and loads lua/plugins/
 lua/config/keymaps.lua    general keys and auto-pairs
 lua/config/runners.lua    F5-F8 build / check / run helpers
 lua/config/autocmds.lua   opens .pdf files in PDFview
+lua/config/mac.lua        macOS-only overrides (loaded only when has("mac"))
 lua/plugins/*.lua         one file per plugin group
 plugin/*.vim              vimscript loaded automatically at startup
 ```
@@ -24,10 +25,11 @@ To add a plugin, put its spec in any file under `lua/plugins/` and restart.
 | Group | Plugins |
 |---|---|
 | AI | Copilot, Claude Code (claudecode.nvim) |
-| Look | kanagawa (active theme), nord, cyberdream, melange; lualine statusline; barbar tabs |
+| Look | kanagawa (active theme), nord, cyberdream, melange; lualine statusline with the open buffers as tabs along the bottom; gitsigns |
 | Editing | treesitter, multiple-cursors, stcursorword (underlines the word under the cursor) |
 | Files | nvim-tree |
 | Docs | md-pdf (Markdown to PDF), PDFview (read PDFs inside Neovim) |
+| Practice | vim-be-good (`:VimBeGood` or `<leader>G`) |
 | Other | luxterm (terminal), nvim-cmp (installed, not configured yet) |
 
 ## Keys
@@ -50,6 +52,20 @@ To add a plugin, put its spec in any file under `lua/plugins/` and restart.
 | `Ctrl-D` / `Ctrl-S` | Half page down / full page up, cursor centered |
 | `<leader>,` | Convert Markdown to PDF |
 | `<leader>jj` / `<leader>kk` | Next / previous PDF page |
+
+### Splits and buffers
+| Key | Action |
+|---|---|
+| `<leader>sv` / `<leader>sh` | Split vertically / horizontally |
+| `Ctrl-H/J/K/L` | Move to the split left / down / up / right |
+| `<leader>sx` / `<leader>so` | Close this split / keep only this one |
+| `<leader>sH/J/K/L` | Move this split to the far left / bottom / top / right |
+| `<leader>s` + arrows | Resize the split |
+| `<leader>s=` / `<leader>sm` / `<leader>sr` | Equalize / maximize / rotate |
+| `<leader>e` | Toggle the file tree |
+| `<leader>bd` | Close the buffer but keep the split |
+
+From a terminal buffer (floating terminal, Claude), press `Esc Esc` before using the keys above.
 
 ### Auto-pairs (insert mode)
 | Type | Get |

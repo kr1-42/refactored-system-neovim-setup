@@ -18,6 +18,13 @@ return {
   -- Terminal integration
   { "luxvim/nvim-luxterm" },
 
+  -- Movement practice game (:VimBeGood)
+  {
+    "ThePrimeagen/vim-be-good",
+    cmd = "VimBeGood",
+    keys = { { "<leader>G", "<Cmd>VimBeGood<CR>", desc = "Vim practice game" } },
+  },
+
   -- Multiple cursors
   {
     "brenton-leighton/multiple-cursors.nvim",

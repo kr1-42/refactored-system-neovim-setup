@@ -35,8 +35,39 @@ local function toggle_term()
   end
   vim.cmd("startinsert")
 end
-map({ "n", "t" }, "<leader>t", toggle_term)
+map("n", "<leader>t", toggle_term)   -- normal mode only, so " t" typed in the shell isn't hijacked
 map("t", "<Esc><Esc>", "<C-\\><C-n>")
+
+-- Splits: <leader>s is the split prefix
+map("n", "<leader>sv", "<Cmd>vsplit<CR>", { desc = "Split vertically" })
+map("n", "<leader>sh", "<Cmd>split<CR>", { desc = "Split horizontally" })
+map("n", "<leader>sx", "<Cmd>close<CR>", { desc = "Close split" })
+map("n", "<leader>so", "<Cmd>only<CR>", { desc = "Keep only this split" })
+map("n", "<leader>s=", "<C-w>=", { desc = "Equalize splits" })
+map("n", "<leader>sr", "<C-w>r", { desc = "Rotate splits" })
+map("n", "<leader>sm", "<C-w>|<C-w>_", { desc = "Maximize split" })
+
+-- Move between splits (from a terminal buffer press Esc Esc first)
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
+
+-- Move the current split to the far left / bottom / top / right
+map("n", "<leader>sH", "<C-w>H")
+map("n", "<leader>sJ", "<C-w>J")
+map("n", "<leader>sK", "<C-w>K")
+map("n", "<leader>sL", "<C-w>L")
+
+-- Resize
+map("n", "<leader>s<Left>", "<Cmd>vertical resize -5<CR>")
+map("n", "<leader>s<Right>", "<Cmd>vertical resize +5<CR>")
+map("n", "<leader>s<Up>", "<Cmd>resize +3<CR>")
+map("n", "<leader>s<Down>", "<Cmd>resize -3<CR>")
+
+-- File tree and buffers
+map("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>", { desc = "File tree" })
+map("n", "<leader>bd", "<Cmd>bprevious<Bar>bdelete #<CR>", { desc = "Close buffer, keep the split" })
 
 -- PDF page navigation (PDFview)
 map("n", "<leader>jj", function() require("pdfview.renderer").next_page() end)

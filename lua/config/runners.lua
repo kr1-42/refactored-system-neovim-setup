@@ -11,6 +11,9 @@ local run_cmds = {
   matlab = "!time octave %",
 }
 
+M.run_cmds = run_cmds   -- exposed so platform files (config.mac) can override entries
+M.leak_cmd = "!valgrind --leak-check=full -s ./a.out"
+
 -- Compile & Run (F5)
 function M.compile_run()
   vim.cmd("write")
@@ -39,7 +42,7 @@ end
 -- Valgrind (F8)
 function M.valgrind()
   vim.cmd("write")
-  vim.cmd("!valgrind --leak-check=full -s ./a.out")
+  vim.cmd(M.leak_cmd)
 end
 
 local function bind(key, name, modes)
